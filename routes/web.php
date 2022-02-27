@@ -22,7 +22,8 @@ function formattedToFloat(string $number): float
     return (float) $number;
 }
 
-function getPrice (string $url, string $selector): float {
+function getPrice(string $url, string $selector): float
+{
     $html = Http::get($url);
     $crawler = new Crawler($html);
     $crawler = $crawler->filter($selector);
@@ -34,9 +35,12 @@ function getPrice (string $url, string $selector): float {
 }
 
 Route::get('/', function () {
-     return getPrice('https://www.moemax.hu/p/modern-living-tkezoasztal-herkules-001630002101', '#currentPrice');
+    //  return getPrice('https://www.moemax.hu/p/modern-living-tkezoasztal-herkules-001630002101', '#currentPrice');
+    return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/dashboard', function () {
+        return view('dashboard');
+    })
+    ->name('dashboard');
