@@ -1,16 +1,4 @@
-<x-jet-authentication-card>
-    <x-slot name="logo">
-        <x-jet-authentication-card-logo />
-    </x-slot>
-
-    <div class="mx-auto py-8">
-        <div class="text-center">
-            <p class="text-2xl font-extrabold text-gray-900">Monitor the price of a product</p>
-            <p class="mt-5 text-gray-500">Add any e-commerce website, search for the price on the page and get
-                notified when it goes on sale</p>
-        </div>
-    </div>
-
+<div class="max-w-xl mx-auto pb-32">
     <x-jet-validation-errors class="mb-4" />
 
     <form wire:submit.prevent="check" class="flex flex-col gap-4">
@@ -43,14 +31,17 @@
         </div>
 
         @if ($price)
+        <div>
+            <label for="under" class="block text-sm font-medium text-gray-700">Notify when the price goes under this
+                number</label>
+            <div class="mt-1">
+                <input wire:model="under" required type="number" name="under" id="under"
+                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+            </div>
+        </div>
+
         <div class="pt-4 flex flex-col items-end gap-2">
-            <p>If the price looks ok, then it's time to register!</p>
-            <a href="/register">
-                <x-jet-button type="button">
-                    {{ __('Register') }}
-                </x-jet-button>
-            </a>
+            <x-jet-button type="button">Set up watcher</x-jet-button>
         </div>
         @endif
-    </form>
-</x-jet-authentication-card>
+</div>
