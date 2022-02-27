@@ -36,3 +36,7 @@ function getPrice (string $url, string $selector): float {
 Route::get('/', function () {
      return getPrice('https://www.moemax.hu/p/modern-living-tkezoasztal-herkules-001630002101', '#currentPrice');
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
