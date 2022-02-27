@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Welcome;
+use App\Mail\PriceDropped;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
@@ -36,16 +37,6 @@ function getPrice(string $url, string $selector): float
 }
 
 Route::get('/', App\Http\Livewire\Welcome::class);
-
-// getPrice(
-//     'https://www.moemax.hu/p/modern-living-tkezoasztal-herkules-001630002101',
-//     '#currentPrice',
-// );
-
-// getPrice(
-//     'https://www.ikea.com/hu/hu/p/pakostad-illatgyertya-taroloban-grapefruit-kek-00507966/',
-//     '.range-revamp-price__integer',
-// );
 
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/dashboard', function () {
