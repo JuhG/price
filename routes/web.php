@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Welcome;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
@@ -24,7 +25,7 @@ function formattedToFloat(string $number): float
 
 function getPrice(string $url, string $selector): float
 {
-    $html = Http::get($url);
+    $html = Http::timeout(10)->get($url);
     $crawler = new Crawler($html);
     $crawler = $crawler->filter($selector);
     if ($crawler->count() === 0) {
@@ -34,10 +35,17 @@ function getPrice(string $url, string $selector): float
     return formattedToFloat($number);
 }
 
-Route::get('/', function () {
-    //  return getPrice('https://www.moemax.hu/p/modern-living-tkezoasztal-herkules-001630002101', '#currentPrice');
-    return view('welcome');
-});
+Route::get('/', App\Http\Livewire\Welcome::class);
+
+// getPrice(
+//     'https://www.moemax.hu/p/modern-living-tkezoasztal-herkules-001630002101',
+//     '#currentPrice',
+// );
+
+// getPrice(
+//     'https://www.ikea.com/hu/hu/p/pakostad-illatgyertya-taroloban-grapefruit-kek-00507966/',
+//     '.range-revamp-price__integer',
+// );
 
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/dashboard', function () {
