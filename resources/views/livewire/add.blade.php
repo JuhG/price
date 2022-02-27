@@ -41,7 +41,7 @@
         </div>
 
         <div class="pt-4 flex flex-col items-end gap-2">
-            <x-jet-button type="button">Set up watcher</x-jet-button>
+            <x-jet-button wire:click="add" type="button">Set up watcher</x-jet-button>
         </div>
         @endif
 </div>

@@ -12,7 +12,7 @@
                     <div class="text-center">
                         <p class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
                             Add a new watcher</p>
-                        <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500">You have to add a new watcher for
+                        <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500">Add a new one for
                             every product you want to monitor</p>
                     </div>
                 </div>

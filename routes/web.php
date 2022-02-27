@@ -52,3 +52,9 @@ Route::middleware(['auth:sanctum', 'verified'])
         return view('dashboard');
     })
     ->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/watchers', function () {
+        return view('watchers');
+    })
+    ->name('watchers');
