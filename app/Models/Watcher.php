@@ -22,12 +22,15 @@ class Watcher extends Model
     public function check()
     {
         try {
-            $price = getPrice($this->url, $this->selector);
-            if ($price < $this->price) {
-                Mail::to($this->user->email)->send(new PriceDropped($this, $price));
-            }
+            retry([1000, 2000, 3000, 4000], function () {
+                $price = getPrice($this->url, $this->selector);
+                if ($price < $this->price) {
+                    Mail::to($this->user->email)->send(new PriceDropped($this, $price));
+                    Log::info('Mail sent: ' . $this->id);
+                }
+            });
         } catch (\Exception $e) {
-            Log::error('Check failed:' . $this->id);
+            Log::error('Check failed: ' . $this->id);
             Log::error($e->getMessage());
         }
     }
